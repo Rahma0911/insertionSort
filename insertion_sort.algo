@@ -1,0 +1,57 @@
+PROCEDURE insertion_sort(n : INTEGER, VAR arr : ARRAY_OF INTEGER)
+VAR
+    i, key, j : INTEGER;
+BEGIN
+    FOR i FROM 1 TO n  DO
+        key := arr[i];
+        j := i-1;
+
+        WHILE (j>=0)AND(arr[j]>key) DO
+            arr[j+1] := arr[j];
+            j := j-1;
+        END_WHILE
+
+        arr[j+1] := key;
+    END_FOR
+END
+
+FUNCTION read_n() : INTEGER
+VAR
+    n : INTEGER;
+BEGIN
+    REPEAT
+        Write("Enter the size of the array (at least 2): ");
+        Read(n);
+    UNTIL (n>2)
+    RETURN n ;
+END
+
+PROCEDURE read_array(n : INTEGER , VAR arr : ARRAY_OF INTEGER)
+VAR
+    i:INTEGER;
+BEGIN
+    FOR i FROM 0 TO n-1  DO
+        Read(arr[i]);
+    END_FOR
+END
+
+PROCEDURE print_sorted_array(n : INTEGER , arr : ARRAY_OF INTEGER)
+VAR
+    i:INTEGER;
+BEGIN
+    FOR i FROM 0 TO n-1 DO
+        Write(arr[i],", ")
+    END_FOR
+END
+
+ALGORITHM Insertion Sort
+
+VAR
+n : INTEGER;
+arr : ARRAY_OF INTEGER[];
+BEGIN
+n := read_n();
+read_array(n,arr);
+insertion_sort(n,arr);
+print_sorted_array(n,arr);
+END
